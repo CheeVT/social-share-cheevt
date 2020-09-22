@@ -2,8 +2,11 @@
 
 class SocialShareAdmin
 {
-  public function __construct()
+  public $socialNetworks;
+  
+  public function __construct($socialNetworks)
   {
+    $this->socialNetworks = $socialNetworks;
     add_action( 'admin_menu', [$this, 'adminPage'] );
   }
 
@@ -14,6 +17,7 @@ class SocialShareAdmin
 
   function adminIndex()
   {
+    $options = get_option('social_share_settings');
     require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'admin/templates/settings.php';
   }
 }

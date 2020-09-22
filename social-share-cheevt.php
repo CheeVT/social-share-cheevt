@@ -21,8 +21,8 @@ define( 'SOCIAL_SHARE_CHEEVT_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 
 function activateSocialShare()
 {
-	require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'includes/class-social-share-activator.php';
-	SocialShareActivator::activate();
+	/*require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'includes/class-social-share-activator.php';
+	SocialShareActivator::activate();*/
 }
 register_activation_hook( __FILE__, 'activateSocialShare' );
 
