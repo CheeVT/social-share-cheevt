@@ -17,6 +17,8 @@ class SocialShareAdmin
 
   function adminIndex()
   {
+    $postTypes = get_post_types( ['public' => true], 'names', 'and' );
+
     $options = get_option('social_share_settings');
     require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'admin/templates/settings.php';
   }

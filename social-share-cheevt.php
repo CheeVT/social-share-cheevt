@@ -18,6 +18,7 @@ defined( 'ABSPATH' ) or die( 'Your system is shutting down here...' );
 
 define( 'SOCIAL_SHARE_CHEEVT_PLUGIN', plugin_basename( __FILE__ ) );
 define( 'SOCIAL_SHARE_CHEEVT_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'SOCIAL_SHARE_CHEEVT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 function activateSocialShare()
 {
