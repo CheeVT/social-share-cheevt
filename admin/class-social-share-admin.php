@@ -18,6 +18,12 @@ class SocialShareAdmin
   function adminIndex()
   {
     $postTypes = get_post_types( ['public' => true], 'names', 'and' );
+    $buttonSizes = [
+      'small' => '16',
+      'medium' => '32',
+      'large' => '48',
+      'x-large' => '64'
+    ];
 
     $options = get_option('social_share_settings');
     require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'admin/templates/settings.php';

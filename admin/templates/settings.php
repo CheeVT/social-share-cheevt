@@ -23,6 +23,16 @@
     <?php endforeach; ?>
   </p>
   <p>
+    <h3>Button size</h3>
+    <?php foreach($buttonSizes as $label => $size): ?>
+      <label for="<?php echo $label; ?>"><?php echo ucfirst($label); ?></label>
+      <input type="radio" 
+        name="social_share_settings[button_size]" 
+        value="<?php echo $size; ?>" id="<?php echo $label; ?>" 
+        <?php echo ($size == $options['button_size']) ? 'checked' : ''; ?> />
+    <?php endforeach; ?>
+  </p>
+  <p>
     <button class="button button-primary">Save</button>
   </p>
   </form>

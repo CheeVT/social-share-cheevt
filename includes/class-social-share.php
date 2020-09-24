@@ -23,7 +23,8 @@ class SocialShare
   {
     add_option('social_share_settings', [
       'social_networks' => [ 'facebook' => 1, 'twitter' => 1, 'linkedin' => 1 ],
-      'post_types' => ['post' => 1, 'page' => 1]
+      'post_types' => ['post' => 1, 'page' => 1],
+      'button_size' => '32'
     ]);
   }
 

@@ -36,7 +36,7 @@ class SocialSharePublic
   protected function renderFacebookButton($post)
   {
     $shareButtonHtml = '<a href="https://www.facebook.com/sharer/sharer.php?u=' . urlencode(get_permalink($post)) . '" style="padding: 5px;">';
-    $shareButtonHtml .= '<svg height="36" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="36" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
+    $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g5991">';
     $shareButtonHtml .= '<rect height="512" id="rect2987" rx="64" ry="64" style="fill:#3b5998;fill-opacity:1;fill-rule:nonzero;stroke:none" width="512" x="0" y="0"/>';
@@ -51,7 +51,7 @@ class SocialSharePublic
   protected function renderTwitterButton($post)
   {
     $shareButtonHtml = '<a href="https://twitter.com/intent/tweet?text=' . $post->post_title . '&url=' . urlencode(get_permalink($post)) . '" style="padding: 5px;">';
-    $shareButtonHtml .= '<svg height="36" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="36" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
+    $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g2995">';
     $shareButtonHtml .= '<rect height="512" id="rect2987" rx="64" ry="64" style="fill:#00abf1;fill-opacity:1;fill-rule:nonzero;stroke:none" width="512" x="0" y="5.6843419e-014"/>';
@@ -66,7 +66,7 @@ class SocialSharePublic
   protected function renderLinkedinButton($post)
   {
     $shareButtonHtml = '<a href="https://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_permalink($post)) . '&title=' . $post->post_title . '" style="padding: 5px;">';
-    $shareButtonHtml .= '<svg height="36" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="36" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
+    $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g5891">';
     $shareButtonHtml .= '<rect height="512" id="rect2987" rx="64" ry="64" style="fill:#0083be;fill-opacity:1;fill-rule:nonzero;stroke:none" width="512" x="0" y="5.6843419e-014"/><g id="g9-1" transform="matrix(1.5537946,0,0,1.5537946,-140.87332,-132.64552)"><rect height="166.021" id="rect11" style="fill:#ffffff" width="55.194" x="129.957" y="200.35699"/><path d="m 157.927,120.303 c -18.884,0 -31.222,12.415 -31.222,28.687 0,15.93 11.963,28.687 30.491,28.687 h 0.357 c 19.245,0 31.224,-12.757 31.224,-28.687 -0.357,-16.272 -11.978,-28.687 -30.85,-28.687 z" id="path13-0" style="fill:#ffffff"/>';
@@ -81,7 +81,7 @@ class SocialSharePublic
   protected function renderPinterestButton($post)
   {  
     $shareButtonHtml = '<a href="#" style="padding: 5px;">';
-    $shareButtonHtml .= '<svg height="36" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="36" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
+    $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g5830">';
     $shareButtonHtml .= '<rect height="512" id="rect2987" rx="64" ry="64" style="fill:#ca2127;fill-opacity:1;fill-rule:nonzero;stroke:none" width="512" x="0" y="0"/>';
@@ -96,7 +96,7 @@ class SocialSharePublic
   protected function renderWhatsappButton($post)
   {  
     $shareButtonHtml = '<a href="https://api.whatsapp.com/send?text=' . $post->post_title . ' ' . urlencode(get_permalink($post)) . '" style="padding: 5px;">';
-    $shareButtonHtml .= '<svg height="36" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="36" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
+    $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g5124">';
     $shareButtonHtml .= '<rect height="512" id="rect2987" rx="64" ry="64" style="fill:#65bc54;fill-opacity:1;fill-rule:nonzero;stroke:none" width="512" x="0" y="0"/>';
