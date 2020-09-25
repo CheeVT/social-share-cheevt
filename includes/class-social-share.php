@@ -7,14 +7,10 @@ require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'public/class-social-share-public
 
 class SocialShare
 {
-  public $socialNetworks = [ 'facebook', 'twitter', 'linkedin', 'pinterest', 'whatsapp' ];
-
   public function __construct()
   {
-    new SocialShareAdmin($this->socialNetworks);
-    new SocialSharePublic();
-
-    register_setting( 'social_share_cheevt', 'social_share_settings', array( $this, 'validate_options' ) );
+    new SocialShareAdmin();
+    new SocialSharePublic();   
     
     $this->setDefaultSettings();
   }
