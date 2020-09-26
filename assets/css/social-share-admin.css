@@ -1,3 +1,20 @@
+
+.form-table__social-networks label {
+  padding-right: 10px;
+  opacity: 0.2;
+}
+.form-table__social-networks label.checked {
+  opacity: 1;
+}
+.form-table__social-networks input {
+  display: none;
+}
 .form-table__custom-color--hide {
   display: none;
+}
+.social-share-field {
+  padding: 5px 0;
+}
+.social-share-field label {
+  padding-right: 10px; 
 }

@@ -1,4 +1,14 @@
 jQuery(document).ready(function ($) {
+
+  $('.form-table__social-networks input').on('change', function() {
+    console.log($(this));
+    if($(this).is(':checked')) {
+      $("label[for='" + $(this).attr('id') + "']").addClass('checked');
+    } else {
+      $("label[for='" + $(this).attr('id') + "']").removeClass('checked');
+    }
+  });
+
   $('#custom_color_background').wpColorPicker();
   $('#custom_color_color').wpColorPicker();
 
@@ -8,5 +18,5 @@ jQuery(document).ready(function ($) {
     } else {      
       $('.form-table__custom-color').hide();
     }
-  })
+  });
 });

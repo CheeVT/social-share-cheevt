@@ -23,7 +23,7 @@ class SocialShare
       'button_size' => '32',
       'position' => 'bottom',
       'color' => 'default',
-      'custom_color' => []
+      'custom_color' => ['background' => '#000000', 'color' => '#FFFFFF']
     ]);
   }
 
