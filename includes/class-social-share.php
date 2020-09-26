@@ -21,7 +21,9 @@ class SocialShare
       'social_networks' => [ 'facebook' => 1, 'twitter' => 1, 'linkedin' => 1 ],
       'post_types' => ['post' => 1, 'page' => 1],
       'button_size' => '32',
-      'position' => 'bottom'
+      'position' => 'bottom',
+      'color' => 'default',
+      'custom_color' => []
     ]);
   }
 
