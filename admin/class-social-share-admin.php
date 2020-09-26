@@ -41,6 +41,7 @@ class SocialShareAdmin
     
     add_settings_section('social_share_settings', 'Social Share Options', [$this, 'socialShareSettings'], 'social_share_cheevt');
 
+    add_settings_field('shortcode', 'Shortcode', [$this, 'shortcode'], 'social_share_cheevt', 'social_share_settings');
     add_settings_field('social_networks', 'Social Networks <i class="dashicons dashicons-leftright" title="Drag and drop social buttons to sort"></i>', [$this, 'socialNetworks'], 'social_share_cheevt', 'social_share_settings', ['class' => 'form-table__social-networks']);
     add_settings_field('post_types', 'Post Types', [$this, 'postTypes'], 'social_share_cheevt', 'social_share_settings');
     add_settings_field('button_size', 'Button size', [$this, 'buttonSize'], 'social_share_cheevt', 'social_share_settings');
@@ -69,6 +70,12 @@ class SocialShareAdmin
 
   public function socialShareSettings() {
     echo 'Customize social share buttons';
+  }
+
+  public function shortcode()
+  {    
+    $output = '<input type="text" id="" value="[social-cheevt]" disabled />';
+    echo $output;
   }
 
   public function socialNetworks()

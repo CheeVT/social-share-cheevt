@@ -7,12 +7,20 @@ require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'public/class-social-share-public
 
 class SocialShare
 {
+  public $socialPublic;
   public function __construct()
   {
     new SocialShareAdmin();
-    new SocialSharePublic();   
+    $this->socialPublic = new SocialSharePublic();   
+
+    add_shortcode( 'social-cheevt', array( $this, 'renderShortcode' ) );
     
     $this->setDefaultSettings();
+  }
+
+  public function renderShortcode()
+  {
+    return $this->socialPublic->prepareHtml();
   }
 
   protected function setDefaultSettings()

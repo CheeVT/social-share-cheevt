@@ -72,9 +72,11 @@ class SocialSharePublic
     return true;
   }
 
-  protected function prepareHtml($class = null)
+  public function prepareHtml($class = null)
   {
     global $post;
+
+    if (! is_object($post)) return false;
 
     $shareIcons = '<div class="social-share-cheevt ' . $class . '" style="display: flex; ">';
     foreach($this->options['social_networks'] as $network => $enabled) {
