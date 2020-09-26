@@ -9,7 +9,6 @@ class SocialShareAdmin
     'medium' => '32',
     'large' => '48'
   ];
-  protected $postTypes;
   protected $positions = [
     'top' => 'Above content', 
     'bottom' => 'Below content', 
@@ -20,8 +19,7 @@ class SocialShareAdmin
 
   public function __construct()
   {
-    $this->options = get_option('social_share_settings');
-    $this->postTypes = get_post_types(['public' => true], 'names', 'and' );
+    $this->options = get_option('social_share_settings');    
 
     add_action('admin_menu', [$this, 'adminPage']);
     add_action('admin_init', [$this, 'adminInit']);
@@ -95,8 +93,10 @@ class SocialShareAdmin
 
   public function postTypes()
   {
+    $postTypes = get_post_types(['public' => true], 'names' );
+
     $output = '';
-    foreach ($this->postTypes as $type)
+    foreach ($postTypes as $type)
     {
       $checked = array_key_exists($type, $this->options['post_types']) ? 'checked' : '';
       $output .= '<div class="social-share-field">';
