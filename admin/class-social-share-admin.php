@@ -41,7 +41,7 @@ class SocialShareAdmin
     
     add_settings_section('social_share_settings', 'Social Share Options', [$this, 'socialShareSettings'], 'social_share_cheevt');
 
-    add_settings_field('social_networks', 'Social Networks', [$this, 'socialNetworks'], 'social_share_cheevt', 'social_share_settings', ['class' => 'form-table__social-networks']);
+    add_settings_field('social_networks', 'Social Networks <i class="dashicons dashicons-leftright" title="Drag and drop social buttons to sort"></i>', [$this, 'socialNetworks'], 'social_share_cheevt', 'social_share_settings', ['class' => 'form-table__social-networks']);
     add_settings_field('post_types', 'Post Types', [$this, 'postTypes'], 'social_share_cheevt', 'social_share_settings');
     add_settings_field('button_size', 'Button size', [$this, 'buttonSize'], 'social_share_cheevt', 'social_share_settings');
     add_settings_field('position', 'Position', [$this, 'position'], 'social_share_cheevt', 'social_share_settings');
@@ -58,6 +58,7 @@ class SocialShareAdmin
   public function adminScripts()
   {
     wp_enqueue_script('wp-color-picker');
+    wp_enqueue_script('jquery-ui-sortable');
     wp_enqueue_script('social-share-admin', SOCIAL_SHARE_CHEEVT_PLUGIN_URL . '/assets/js/social-share-admin.js', ['jquery'], '', true);
   }
 
@@ -72,12 +73,15 @@ class SocialShareAdmin
 
   public function socialNetworks()
   {
+    $socialNetworks = array_unique(array_merge(array_keys($this->options['social_networks']), $this->socialNetworks));;
+    
     $output = '';
-    foreach ($this->socialNetworks as $network)
+    foreach ($socialNetworks as $network)
     {
       $checked = array_key_exists($network, $this->options['social_networks']) ? 'checked' : '';      
-      $output .= '<label for="' . $network . '" class="' . $checked . '"><img src="' . SOCIAL_SHARE_CHEEVT_PLUGIN_URL . '/assets/images/' . $network . '" style="width: 30px;"/></label>';
+      $output .= '<label for="' . $network . '" class="' . $checked . '"><img src="' . SOCIAL_SHARE_CHEEVT_PLUGIN_URL . '/assets/images/' . $network . '" style="width: 30px;"/>';
       $output .= '<input type="checkbox" id="'.$network.'" name="social_share_settings[social_networks][' . $network . ']" value="1" '.$checked.' />';
+      $output .= '</label>';
     }
     echo $output;
   }

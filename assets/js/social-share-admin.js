@@ -1,5 +1,7 @@
 jQuery(document).ready(function ($) {
 
+  $('.form-table__social-networks td').sortable();
+
   $('.form-table__social-networks input').on('change', function() {
     console.log($(this));
     if($(this).is(':checked')) {
