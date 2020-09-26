@@ -5,32 +5,85 @@ class SocialSharePublic
   public $options;
 
   public function __construct()
-  {
-    add_filter( 'the_content', array( $this, 'renderSharing' ), 99 );
+  {    
     $this->options = get_option('social_share_settings');
+    $this->render();
   }
 
-  public function renderSharing( $content )
+  protected function render()
+  {
+    switch($this->options['position'])
+    {
+      case 'top':
+      case 'bottom':
+      case 'float-left':
+        add_filter('the_content', [$this, 'renderAboveOrBelowContent'], 99);
+      break;
+      case 'featured-image':
+        add_filter('post_thumbnail_html', [$this, 'renderFeaturedImage'], 10, 3);
+      break;
+    }    
+  }
+
+  public function renderFeaturedImage($html, $post_id, $post_image_id)
+  {      
+    if(! $this->shouldRenderButtons()) return $html;
+
+    $shareIcons = $this->prepareHtml('social-share-cheevt--featured-image');
+
+    return $html . $shareIcons;
+  }
+
+  
+
+  public function renderAboveOrBelowContent($content)
+  {
+    if(! $this->shouldRenderButtons()) return $content;    
+
+    switch($this->options['position'])
+    {
+      case 'top':
+        $shareIcons = $this->prepareHtml('social-share-cheevt--top');
+        $content = $shareIcons . $content;
+      break;
+      case 'bottom':
+        $shareIcons = $this->prepareHtml('social-share-cheevt--bottom');
+        $content = $content . $shareIcons;
+      break;
+      case 'float-left':
+        $shareIcons = $this->prepareHtml('social-share-cheevt--floating');
+        $content = $shareIcons . $content;
+      break;
+    }
+    
+    return $content;
+  }
+
+  protected function shouldRenderButtons()
   {
     global $post;   
 
-    if ( ! is_object( $post ) ) return $content;
+    if (! is_object($post)) return false;
 
     $postType = $post->post_type;
 
-    if( ! array_key_exists( $postType, $this->options['post_types'] ) ) return $content;
+    if(! array_key_exists($postType, $this->options['post_types'])) return false;
 
-    //require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'public/templates/horizontal.php';   
+    return true;
+  }
 
-    $shareIcons = '<div class="social-share-horizontal" style="display: flex; ">';
+  protected function prepareHtml($class = null)
+  {
+    global $post;
+
+    $shareIcons = '<div class="social-share-cheevt ' . $class . '" style="display: flex; ">';
     foreach($this->options['social_networks'] as $network => $enabled) {
       $renderButton = 'render' . ucfirst($network) . 'Button';
       $shareIcons .= $this->$renderButton($post);
     }
     $shareIcons .= '</div>';
-    
-    return $content . $shareIcons;
 
+    return $shareIcons;
   }
 
   protected function renderFacebookButton($post)

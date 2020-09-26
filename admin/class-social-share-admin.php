@@ -7,10 +7,15 @@ class SocialShareAdmin
   protected $buttonSizes = [
     'small' => '16',
     'medium' => '32',
-    'large' => '48',
-    'x-large' => '64'
+    'large' => '48'
   ];
   protected $postTypes;
+  protected $positions = [
+    'top' => 'Above content', 
+    'bottom' => 'Below content', 
+    'float-left' => 'Floating left',
+    'featured-image' => 'Inside the featured image'
+  ];
 
   public function __construct()
   {
@@ -35,6 +40,7 @@ class SocialShareAdmin
     add_settings_field( 'social_networks', 'Social Networks', [$this, 'socialNetworks'], 'social_share_cheevt', 'social_share_settings' );
     add_settings_field( 'post_types', 'Post Types', [$this, 'postTypes'], 'social_share_cheevt', 'social_share_settings' );
     add_settings_field( 'button_size', 'Button size', [$this, 'buttonSize'], 'social_share_cheevt', 'social_share_settings' );
+    add_settings_field( 'position', 'Position', [$this, 'position'], 'social_share_cheevt', 'social_share_settings' );
   }
 
   function adminIndex()
@@ -81,5 +87,17 @@ class SocialShareAdmin
     }
     echo $output;
     
+  }
+
+  public function position()
+  {
+    $output = '';
+    foreach ( $this->positions as $value => $label )
+    {
+      $checked = $value == $this->options['position'] ? 'checked' : '';
+      $output .= '<label for="' . $value . '">' . $label . '</label>';
+      $output .= '<input type="radio" id="'.$value.'" name="social_share_settings[position]" value="'. $value .'" '.$checked.' />';
+    }
+    echo $output;    
   }
 }
