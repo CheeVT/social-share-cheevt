@@ -12,6 +12,9 @@ class SocialSharePublic
 
   protected function render()
   {
+
+    add_action( 'wp_enqueue_scripts', [$this, 'publicStyles'] );
+
     switch($this->options['position'])
     {
       case 'top':
@@ -23,6 +26,11 @@ class SocialSharePublic
         add_filter('post_thumbnail_html', [$this, 'renderFeaturedImage'], 10, 3);
       break;
     }    
+  }
+
+  public function publicStyles()
+  {
+    wp_enqueue_style('social-share-public', SOCIAL_SHARE_CHEEVT_PLUGIN_URL . '/assets/css/social-share-public.css');
   }
 
   public function renderFeaturedImage($html, $post_id, $post_image_id)
@@ -51,6 +59,8 @@ class SocialSharePublic
         $content = $content . $shareIcons;
       break;
       case 'float-left':
+        if(! is_singular()) return $content;
+
         $shareIcons = $this->prepareHtml('social-share-cheevt--floating');
         $content = $shareIcons . $content;
       break;
@@ -78,7 +88,7 @@ class SocialSharePublic
 
     if (! is_object($post)) return false;
 
-    $shareIcons = '<div class="social-share-cheevt ' . $class . '" style="display: flex; ">';
+    $shareIcons = '<div class="social-share-cheevt ' . $class . '">';
     foreach($this->options['social_networks'] as $network => $enabled) {
       $renderButton = 'render' . ucfirst($network) . 'Button';
       $shareIcons .= $this->$renderButton($post);
@@ -107,7 +117,7 @@ class SocialSharePublic
     $customBackground = $this->getCustomBackground();
     $customColor = $this->getCustomColor();
 
-    $shareButtonHtml = '<a href="https://www.facebook.com/sharer/sharer.php?u=' . urlencode(get_permalink($post)) . '" style="padding: 5px;">';
+    $shareButtonHtml = '<a href="https://www.facebook.com/sharer/sharer.php?u=' . urlencode(get_permalink($post)) . '" target="_blank" class="social-share-cheevt__network">';
     $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g5991">';
@@ -125,7 +135,7 @@ class SocialSharePublic
     $customBackground = $this->getCustomBackground();
     $customColor = $this->getCustomColor();
 
-    $shareButtonHtml = '<a href="https://twitter.com/intent/tweet?text=' . $post->post_title . '&url=' . urlencode(get_permalink($post)) . '" style="padding: 5px;">';
+    $shareButtonHtml = '<a href="https://twitter.com/intent/tweet?text=' . $post->post_title . '&url=' . urlencode(get_permalink($post)) . '" target="_blank" class="social-share-cheevt__network">';
     $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g2995">';
@@ -143,7 +153,7 @@ class SocialSharePublic
     $customBackground = $this->getCustomBackground();
     $customColor = $this->getCustomColor();
 
-    $shareButtonHtml = '<a href="https://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_permalink($post)) . '&title=' . $post->post_title . '" style="padding: 5px;">';
+    $shareButtonHtml = '<a href="https://www.linkedin.com/shareArticle?mini=true&url=' . urlencode(get_permalink($post)) . '&title=' . $post->post_title . '" target="_blank" class="social-share-cheevt__network">';
     $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g5891">';
@@ -161,7 +171,7 @@ class SocialSharePublic
     $customBackground = $this->getCustomBackground();
     $customColor = $this->getCustomColor();
 
-    $shareButtonHtml = '<a href="#" style="padding: 5px;">';
+    $shareButtonHtml = '<a href="#" target="_blank" class="social-share-cheevt__network">';
     $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g5830">';
@@ -179,7 +189,7 @@ class SocialSharePublic
     $customBackground = $this->getCustomBackground();
     $customColor = $this->getCustomColor();
 
-    $shareButtonHtml = '<a href="https://api.whatsapp.com/send?text=' . $post->post_title . ' ' . urlencode(get_permalink($post)) . '" style="padding: 5px;">';
+    $shareButtonHtml = '<a href="https://api.whatsapp.com/send?text=' . $post->post_title . ' ' . urlencode(get_permalink($post)) . '" target="_blank" class="social-share-cheevt__network">';
     $shareButtonHtml .= '<svg height="' . $this->options['button_size'] . '" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="' . $this->options['button_size'] . '" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg">';
     $shareButtonHtml .= '<defs id="defs12"/>';
     $shareButtonHtml .= '<g id="g5124">';

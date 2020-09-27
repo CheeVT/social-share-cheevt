@@ -10,10 +10,10 @@ class SocialShare
   public $socialPublic;
   public function __construct()
   {
-    new SocialShareAdmin();
     $this->socialPublic = new SocialSharePublic();   
+    new SocialShareAdmin();
 
-    add_shortcode( 'social-cheevt', array( $this, 'renderShortcode' ) );
+    add_shortcode('social-cheevt', [$this, 'renderShortcode']);
     
     $this->setDefaultSettings();
   }
