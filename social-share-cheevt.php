@@ -5,7 +5,7 @@
  *
  * @social-share-cheevt
  * Plugin Name:       Social Share CheeVT
- * Plugin URI:        https://github.com/CheeVT/social-share
+ * Plugin URI:        https://github.com/CheeVT/social-share-cheevt
  * Description:       Share WordPress content to Social Networks
  * Version:           1.0.0
  * Author:            CheeVT
@@ -22,8 +22,8 @@ define( 'SOCIAL_SHARE_CHEEVT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 function activateSocialShare()
 {
-	/*require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'includes/class-social-share-activator.php';
-	SocialShareActivator::activate();*/
+	require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'includes/class-social-share-activator.php';
+	SocialShareActivator::activate();
 }
 register_activation_hook( __FILE__, 'activateSocialShare' );
 
@@ -34,8 +34,6 @@ function settingsLink( $links )
   return $links;
 }
 add_filter( 'plugin_action_links_' . SOCIAL_SHARE_CHEEVT_PLUGIN, 'settingsLink' );
-
-
 
 require_once SOCIAL_SHARE_CHEEVT_PLUGIN_PATH . 'includes/class-social-share.php';
 
